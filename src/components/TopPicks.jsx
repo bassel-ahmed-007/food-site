@@ -1,0 +1,39 @@
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
+import { topPicks } from "../data/data";
+
+function TopPicks() {
+  return (
+    <>
+      <h1 className="text-orange-500 font-bold text-2xl text-center py-2">
+        Top Picks
+      </h1>
+      <div className="hidden lg:flex max-w-[1520px] m-auto p-2">
+        <Splide options={{ perPage: 4, gap: "1rem", grag: "free" }}>
+          {topPicks.map((item) => {
+            return (
+              <SplideSlide key={item.id}>
+                <div className="group rounded-3xl relative">
+                  <div className="absolute w-full h-full bg-black/50 rounded-3xl text-white">
+                    <p className="px-2 pt-4 font-bold text-2xl">{item.title}</p>
+                    <p className="px-2">{item.price}</p>
+                    <button className="border-dotted border-white mx-2 absolute bottom-4">
+                      Add To Cart
+                    </button>
+                  </div>
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="h-[200px] w-full object-cover rounded-3xl cursor-pointer group-hover:scale-105 ease-out transition-all duration-500"
+                  />
+                </div>
+              </SplideSlide>
+            );
+          })}
+        </Splide>
+      </div>
+    </>
+  );
+}
+
+export default TopPicks;
